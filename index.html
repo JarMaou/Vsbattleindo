@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VS Battles Wiki</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-y: scroll;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      background: linear-gradient(135deg, #ff7e5f, #feb47b, #ff6a88);
+      height: 200vh;
+      transition: background 0.5s;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, #ff0000, #ffffff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: colorChange 3s infinite;
+    }
+
+    @keyframes colorChange {
+      0% { background-position: 0%; }
+      50% { background-position: 100%; }
+      100% { background-position: 0%; }
+    }
+
+    .eye {
+      position: absolute;
+      width: 80px;
+      height: 40px;
+      background-color: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px black;
+      transition: transform 0.5s;
+      left: 50%;
+      top: 20%;
+      transform: translate(-50%, -50%);
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-gap: 20px;
+      margin: 20px;
+      position: relative;
+      z-index: 1;
+      width: 90%;
+    }
+
+    .box {
+      position: relative;
+      padding: 10px;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.8); /* Warna lebih cerah */
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: transform 0.2s;
+      text-decoration: none;
+      color: inherit;
+      border-radius: 10px; /* Untuk sudut membulat */
+      overflow: hidden; /* Supaya border kelap kelip tidak keluar */
+    }
+
+    .box:hover {
+      transform: scale(1.05);
+    }
+
+    .box img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .box h3,
+    .box p {
+      color: #000; /* Mengubah warna teks menjadi hitam untuk kontras yang lebih baik */
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    }
+
+    .rainbow-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 5px solid transparent;
+      border-radius: 10px; /* Agar sudut membulat */
+      animation: changeColors 2s linear infinite; /* Animasi warna pelangi */
+      z-index: -1; /* Agar border di belakang konten */
+    }
+
+    @keyframes changeColors {
+      0% { border-color: red; }
+      16.67% { border-color: orange; }
+      33.33% { border-color: yellow; }
+      50% { border-color: green; }
+      66.67% { border-color: blue; }
+      83.33% { border-color: indigo; }
+      100% { border-color: violet; }
+    }
+
+    .upload-button {
+      display: inline-block;
+      padding: 15px 30px; /* Membuat tombol lebih besar */
+      margin-top: 20px; /* Jarak di atas tombol */
+      background-color: #ff80bf;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px; /* Sudut membulat */
+      cursor: pointer;
+      font-size: 1.2rem; /* Ukuran font lebih besar */
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .upload-button:hover {
+      background-color: #ff0080;
+      transform: scale(1.1);
+    }
+
+    .floating {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      z-index: 1000;
+      animation: fadeIn 0.5s, fadeOut 0.5s;
+    }
+
+    .floating-buttons {
+      margin-top: 20px;
+    }
+
+    .floating-button {
+      padding: 10px 20px;
+      margin: 0 10px;
+      background-color: #ff80bf;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .floating-button:hover {
+      background-color: #ff0080;
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="title">VS BATTLES INDO</div>
+  
+  <button class="upload-button" id="uploadButton">UPLOAD CHAR</button>
+
+  <div class="eye" id="eye"></div>
+
+  <div class="container">
+    <a href="https://www.voidsai.kesug.com/" class="box">
+      <img src="https://gcdnb.pbrd.co/images/N6AjgySX6OqL.png?o=1" alt="Character 1">
+      <h3>Void Sai</h3>
+      <p>[BOUNDLESS]</p>
+      <p>CHAR BY : ADMIN</p>
+      <div class="rainbow-border"></div>
+    </a>
+    <a href="#" class="box">
+      <img src="https://via.placeholder.com/150x100" alt="Character 2">
+      <h3>CHARACTER NOT FOUND</h3>
+      <p>NOT FOUND</p>
+      <div class="rainbow-border"></div>
+    </a>
+    <a href="#" class="box">
+      <img src="https://via.placeholder.com/150x100" alt="Character 3">
+      <h3>CHARACTER NOT FOUND</h3>
+      <p>NOT FOUND</p>
+      <div class="rainbow-border"></div>
+    </a>
+    <a href="#" class="box">
+      <img src="https://via.placeholder.com/150x100" alt="Character 4">
+      <h3>CHARACTER NOT FOUND</h3>
+      <p>NOT FOUND</p>
+      <div class="rainbow-border"></div>
+    </a>
+    <a href="#" class="box">
+      <img src="https://via.placeholder.com/150x100" alt="Character 5">
+      <h3>CHARACTER NOT FOUND</h3>
+      <p>NOT FOUND</p>
+      <div class="rainbow-border"></div>
+    </a>
+    <a href="#" class="box">
+      <img src="https://via.placeholder.com/150x100" alt="Character 6">
+      <h3>CHARACTER NOT FOUND</h3>
+      <p>NOT FOUND</p>
+      <div class="rainbow-border"></div>
+    </a>
+    <a href="#" class="box">
+      <img src="https://via.placeholder.com/150x100" alt="Character 7">
+      <h3>CHARACTER NOT FOUND</h3>
+      <p>NOT FOUND</p>
+      <div class="rainbow-border"></div>
+    </a>
+    <a href="#" class="box">
+      <img src="https://via.placeholder.com/150x100" alt="Character 8">
+      <h3>CHARACTER NOT FOUND</h3>
+      <p>NOT FOUND</p>
+      <div class="rainbow-border"></div>
+    </a>
+  </div>
+
+  <div class="floating" id="floating">
+    <p>UPLOAD CHAR BUATAN MU DI WEB INI DENGAN HARGA 10K KLIK YES JIKA SETUJU</p>
+    <p>HARGA 10K VIA DANA</p>
+    <p>WARNING!!!<P>
+    <P>[CERITA CHARACTER MU]</p>
+    <P>BUAT CERITA NYA NANTI ADMIN AKAN MENGISI SEMUA POWER DAN ABBILITES CHAR MU SERTA TIER SESUAI CERITA CHARACTER MU JUGA DARI CERITA YANG KAMU BUAT</p>
+    <div class="floating-buttons">
+      <button class="floating-button" id="yesButton">YES</button>
+      <button class="floating-button" id="noButton">NO</button>
+    </div>
+  </div>
+
+  <div class="floating" id="floatingYes">
+    <p>CHAT ADMIN UNTUK JASA UPLOAD CHAR BUATAN MU</p>
+  </div>
+
+  <script>
+    const eye = document.getElementById('eye');
+    const body = document.body;
+    let isBlinking = false;
+
+    function blink() {
+      if (!isBlinking) {
+        isBlinking = true;
+        body.style.background = 'black';
+        eye.style.height = '0';
+
+        setTimeout(() => {
+          eye.style.height = '40px';
+          body.style.background = 'linear-gradient(135deg, #ff7e5f, #feb47b, #ff6a88)';
+          isBlinking = false;
+        }, 500);
+      }
+    }
+
+    setInterval(blink, 8000);
+
+    const uploadButton = document.getElementById('uploadButton');
+    const floating = document.getElementById('floating');
+    const floatingYes = document.getElementById('floatingYes');
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+
+    uploadButton.addEventListener('click', () => {
+      floating.style.display = 'block';
+      floating.style.animation = 'fadeIn 0.5s';
+    });
+
+    noButton.addEventListener('click', () => {
+      floating.style.animation = 'fadeOut 0.5s';
+      setTimeout(() => {
+        floating.style.display = 'none';
+      }, 500);
+    });
+
+    yesButton.addEventListener('click', () => {
+      floating.style.animation = 'fadeOut 0.5s';
+      setTimeout(() => {
+        floating.style.display = 'none';
+        floatingYes.style.display = 'block';
+        floatingYes.style.animation = 'fadeIn 0.5s';
+        setTimeout(() => {
+          floatingYes.style.animation = 'fadeOut 0.5s';
+          setTimeout(() => {
+            floatingYes.style.display = 'none';
+            window.location.href = 'https://example.com/chat-admin';
+          }, 500);
+        }, 5000);
+      }, 500);
+    });
+  </script>
+</body>
+</html>
