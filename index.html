@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VS Battles Wiki</title>
+  <title>VS Battles Indo</title>
   <style>
     body {
       margin: 0;
@@ -54,6 +54,51 @@
       display: flex; /* Use flexbox for button alignment */
       justify-content: center; /* Center buttons horizontally */
       margin-top: 20px; /* Add space above buttons */
+    }
+
+    .search-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px; /* Add space above search bar */
+      width: 100%;
+      padding: 0 10%;
+    }
+
+    .search-bar {
+      flex-grow: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    .search-bar::placeholder {
+      color: #ccc;
+    }
+
+    .search-icon {
+      background-color: #ff80bf;
+      border: none;
+      padding: 0 15px;
+      border-radius: 5px;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    .search-icon:hover {
+      background-color: #ff0080;
+      transform: scale(1.05);
+    }
+
+    .search-icon img {
+      width: 20px;
+      height: 20px;
     }
 
     .container {
@@ -217,14 +262,22 @@
 <body>
   <div class="title">VS BATTLES INDO</div>
   
-  <!-- Tombol di samping kanan -->
+  <!-- Tombol di atas -->
   <div class="button-container">
     <button class="upload-button" id="uploadButton">UPLOAD CHAR</button>
     <button class="upload-button" id="requestButton">UP TIER CHAR</button>
     <button class="rainbow-button" id="rulesButton">PERATURAN VSBI</button>
   </div>
 
-  <div class="container">
+  <!-- Search bar di bawah tombol -->
+  <div class="search-container">
+    <input type="text" class="search-bar" id="searchBar" placeholder="Cari karakter...">
+    <button class="search-icon" id="searchButton">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/search.png" alt="Search">
+    </button>
+  </div>
+
+  <div class="container" id="characterContainer">
     <a href="https://www.voidsai.kesug.com/" class="box">
       <img src="https://gcdnb.pbrd.co/images/N6AjgySX6OqL.png?o=1" alt="Character 1">
       <h3>Void Sai</h3>
@@ -249,7 +302,7 @@
     <a href="https://rimurutempestwebnovel.vsindo.rf.gd/" class="box">
       <img src="https://gcdnb.pbrd.co/images/mC7TA2yfpWQq.jpg?o=1" alt="Character 4">
       <h3>RIMURU TEMPEST (Web Novel)</h3>
-      <p>[CHARACTER)</p>
+      <p>[CHARACTER]</p>
       <p>UPLOAD BY : @raphpoxii | Foxyy</p>
       <div class="rainbow-border"></div>
     </a>
@@ -281,9 +334,9 @@
 
   <div class="floating" id="floating">
     <p>UPLOAD CHAR BUATAN MU DI WEB INI KLIK YES JIKA SETUJU</p>
-    <p>WARNING!!!<P>
-    <P>[CERITA CHARACTER MU]</p>
-    <P>BUAT CERITA NYA NANTI ADMIN AKAN MENGISI SEMUA POWER DAN ABBILITES CHAR MU SERTA TIER SESUAI CERITA CHARACTER MU JUGA DARI CERITA YANG KAMU BUAT</p>
+    <p>WARNING!!!</p>
+    <p>[CERITA CHARACTER MU]</p>
+    <p>BUAT CERITA NYA NANTI ADMIN AKAN MENGISI SEMUA POWER DAN ABBILITES CHAR MU SERTA TIER SESUAI CERITA CHARACTER MU JUGA DARI CERITA YANG KAMU BUAT</p>
     <div class="floating-buttons">
       <button class="floating-button" id="yesButton">YES</button>
       <button class="floating-button" id="noButton">NO</button>
@@ -322,8 +375,6 @@
   </div>
 
   <script>
-    const body = document.body;
-
     const uploadButton = document.getElementById('uploadButton');
     const requestButton = document.getElementById('requestButton');
     const rulesButton = document.getElementById('rulesButton');
@@ -337,6 +388,9 @@
     const requestYesButton = document.getElementById('requestYesButton');
     const requestNoButton = document.getElementById('requestNoButton');
     const rulesAgreeButton = document.getElementById('rulesAgreeButton');
+    const searchBar = document.getElementById('searchBar');
+    const searchButton = document.getElementById('searchButton');
+    const characterContainer = document.getElementById('characterContainer');
 
     uploadButton.addEventListener('click', () => {
       floating.style.display = 'block';
@@ -404,6 +458,28 @@
       setTimeout(() => {
         floatingRules.style.display = 'none';
       }, 500);
+    });
+
+    searchButton.addEventListener('click', () => {
+      const searchTerm = searchBar.value.toLowerCase();
+      const boxes = document.querySelectorAll('.box');
+
+      // Sembunyikan semua karakter terlebih dahulu
+      boxes.forEach(box => {
+        box.style.display = 'none';
+      });
+
+      // Tampilkan karakter yang sesuai setelah tombol pencarian diklik
+      boxes.forEach(box => {
+        const characterName = box.querySelector('h3').textContent.toLowerCase();
+        if (characterName.includes(searchTerm)) {
+          box.style.display = 'block';
+        }
+      });
+    });
+
+    searchBar.addEventListener('input', () => {
+      // Tidak melakukan apa-apa saat mengetik di search bar
     });
   </script>
 </body>
