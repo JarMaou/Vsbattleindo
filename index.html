@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VS Battles Wiki</title>
+  <title>VS Battles Indo</title>
   <style>
     body {
       margin: 0;
@@ -13,12 +13,22 @@
       font-family: Arial, sans-serif;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: center; /* Center horizontally */
       justify-content: flex-start;
       position: relative;
       background: linear-gradient(135deg, #00ff7f, #00fa9a, #00ff00);
       height: 200vh;
       transition: background 0.5s;
+      animation: rainbowBackground 10s infinite;
+    }
+
+    @keyframes rainbowBackground {
+      0% { background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00); }
+      20% { background: linear-gradient(135deg, #ff7f00, #ffff00, #00ff00); }
+      40% { background: linear-gradient(135deg, #ffff00, #00ff00, #0000ff); }
+      60% { background: linear-gradient(135deg, #00ff00, #0000ff, #4b0082); }
+      80% { background: linear-gradient(135deg, #0000ff, #4b0082, #8b00ff); }
+      100% { background: linear-gradient(135deg, #4b0082, #8b00ff, #ff0000); }
     }
 
     .title {
@@ -31,6 +41,7 @@
       background-clip: text;
       color: transparent;
       animation: colorChange 3s infinite;
+      text-align: center; /* Center title text */
     }
 
     @keyframes colorChange {
@@ -39,17 +50,10 @@
       100% { background-position: 0%; }
     }
 
-    .eye {
-      position: absolute;
-      width: 80px;
-      height: 40px;
-      background-color: #fff;
-      border-radius: 50%;
-      box-shadow: 0 0 0 5px black;
-      transition: transform 0.5s;
-      left: 50%;
-      top: 20%;
-      transform: translate(-50%, -50%);
+    .button-container {
+      display: flex; /* Use flexbox for button alignment */
+      justify-content: center; /* Center buttons horizontally */
+      margin-top: 20px; /* Add space above buttons */
     }
 
     .container {
@@ -66,14 +70,14 @@
       position: relative;
       padding: 10px;
       text-align: center;
-      background-color: rgba(255, 255, 255, 0.8); /* Warna lebih cerah */
+      background-color: rgba(255, 255, 255, 0.8);
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
       cursor: pointer;
       transition: transform 0.2s;
       text-decoration: none;
       color: inherit;
-      border-radius: 10px; /* Untuk sudut membulat */
-      overflow: hidden; /* Supaya border kelap kelip tidak keluar */
+      border-radius: 10px; 
+      overflow: hidden; 
     }
 
     .box:hover {
@@ -89,7 +93,7 @@
 
     .box h3,
     .box p {
-      color: #000; /* Mengubah warna teks menjadi hitam untuk kontras yang lebih baik */
+      color: #000; 
       text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
     }
 
@@ -100,9 +104,9 @@
       right: 0;
       bottom: 0;
       border: 5px solid transparent;
-      border-radius: 10px; /* Agar sudut membulat */
-      animation: changeColors 2s linear infinite; /* Animasi warna pelangi */
-      z-index: -1; /* Agar border di belakang konten */
+      border-radius: 10px; 
+      animation: changeColors 2s linear infinite; 
+      z-index: -1; 
     }
 
     @keyframes changeColors {
@@ -117,21 +121,21 @@
 
     .upload-button {
       display: inline-block;
-      padding: 15px 30px; /* Membuat tombol lebih besar */
-      margin-top: 20px; /* Jarak di atas tombol */
+      padding: 10px 20px; 
+      margin: 0 5px; /* Margin to separate buttons */
       background-color: #ff80bf;
       color: #fff;
       font-weight: bold;
       border: none;
-      border-radius: 10px; /* Sudut membulat */
+      border-radius: 5px; 
       cursor: pointer;
-      font-size: 1.2rem; /* Ukuran font lebih besar */
+      font-size: 1rem; 
       transition: background-color 0.3s, transform 0.3s;
     }
 
     .upload-button:hover {
       background-color: #ff0080;
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
     .floating {
@@ -185,9 +189,11 @@
 <body>
   <div class="title">VS BATTLES INDO</div>
   
-  <button class="upload-button" id="uploadButton">UPLOAD CHAR</button>
-
-  <div class="eye" id="eye"></div>
+  <!-- Tombol di samping kanan -->
+  <div class="button-container">
+    <button class="upload-button" id="uploadButton">UPLOAD CHAR</button>
+    <button class="upload-button" id="requestButton">UP TIER CHAR</button>
+  </div>
 
   <div class="container">
     <a href="https://www.voidsai.kesug.com/" class="box">
@@ -254,35 +260,34 @@
   </div>
 
   <div class="floating" id="floatingYes">
-    <p>WEBSITE BY : JAR MAOU</p>
+    <p>LEWATI IKLAN TERLEBIH DAHULU</p>
+  </div>
+
+  <div class="floating" id="floatingRequest">
+    <p>CERITAKAN TENTANG KEHEBATAN CHARACTER MU JIKA ADMIN AGREE TIER CHARACTER MU BAKAL BISA DI UP PASTIKAN KARAKTER MU SUDAH ADA DI VS BATTLE INDO JIKA TIDAK ADA REQUEST CHAR MU AKAN DI TOLAK MENTAH MENTAH KLIK YES UNTUK KE REQUEST</p>
+    <div class="floating-buttons">
+      <button class="floating-button" id="requestYesButton">YES</button>
+      <button class="floating-button" id="requestNoButton">NO</button>
+    </div>
+  </div>
+
+  <div class="floating" id="floatingRequestYes">
+    <p>LEWATI IKLAN TERLEBIH DAHULU</p>
   </div>
 
   <script>
-    const eye = document.getElementById('eye');
     const body = document.body;
-    let isBlinking = false;
-
-    function blink() {
-      if (!isBlinking) {
-        isBlinking = true;
-        body.style.background = 'black';
-        eye.style.height = '0';
-
-        setTimeout(() => {
-          eye.style.height = '40px';
-          body.style.background = 'linear-gradient(135deg, #00ff7f, #00fa9a, #00ff00)';
-          isBlinking = false;
-        }, 500);
-      }
-    }
-
-    setInterval(blink, 5000);
 
     const uploadButton = document.getElementById('uploadButton');
+    const requestButton = document.getElementById('requestButton');
     const floating = document.getElementById('floating');
     const floatingYes = document.getElementById('floatingYes');
+    const floatingRequest = document.getElementById('floatingRequest');
+    const floatingRequestYes = document.getElementById('floatingRequestYes');
     const yesButton = document.getElementById('yesButton');
     const noButton = document.getElementById('noButton');
+    const requestYesButton = document.getElementById('requestYesButton');
+    const requestNoButton = document.getElementById('requestNoButton');
 
     uploadButton.addEventListener('click', () => {
       floating.style.display = 'block';
@@ -306,7 +311,35 @@
           floatingYes.style.animation = 'fadeOut 0.5s';
           setTimeout(() => {
             floatingYes.style.display = 'none';
-            window.location.href = 'https://surveyheart.com/form/66c12668543cc84642923f57';
+            window.location.href = 'https://sfl.gl/z2zUqFP';
+          }, 500);
+        }, 2500);
+      }, 500);
+    });
+
+    requestButton.addEventListener('click', () => {
+      floatingRequest.style.display = 'block';
+      floatingRequest.style.animation = 'fadeIn 0.5s';
+    });
+
+    requestNoButton.addEventListener('click', () => {
+      floatingRequest.style.animation = 'fadeOut 0.5s';
+      setTimeout(() => {
+        floatingRequest.style.display = 'none';
+      }, 500);
+    });
+
+    requestYesButton.addEventListener('click', () => {
+      floatingRequest.style.animation = 'fadeOut 0.5s';
+      setTimeout(() => {
+        floatingRequest.style.display = 'none';
+        floatingRequestYes.style.display = 'block';
+        floatingRequestYes.style.animation = 'fadeIn 0.5s';
+        setTimeout(() => {
+          floatingRequestYes.style.animation = 'fadeOut 0.5s';
+          setTimeout(() => {
+            floatingRequestYes.style.display = 'none';
+            window.location.href = 'https://sfl.gl/eg3gJL';
           }, 500);
         }, 2500);
       }, 500);
