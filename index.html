@@ -138,6 +138,34 @@
       transform: scale(1.05);
     }
 
+    .rainbow-button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 0 5px; /* Margin to separate buttons */
+      background-color: #ff80bf;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.3s;
+      background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+      background-size: 400%; /* Increase size of background for smooth animation */
+      animation: rainbowButton 5s infinite;
+    }
+
+    @keyframes rainbowButton {
+      0% { background-position: 0%; }
+      50% { background-position: 100%; }
+      100% { background-position: 0%; }
+    }
+
+    .rainbow-button:hover {
+      background-color: #ff0080;
+      transform: scale(1.05);
+    }
+
     .floating {
       display: none;
       position: fixed;
@@ -193,6 +221,7 @@
   <div class="button-container">
     <button class="upload-button" id="uploadButton">UPLOAD CHAR</button>
     <button class="upload-button" id="requestButton">UP TIER CHAR</button>
+    <button class="rainbow-button" id="rulesButton">PERATURAN VSBI</button>
   </div>
 
   <div class="container">
@@ -210,10 +239,11 @@
       <p>CHAR BY : @alljr_21</p>
       <div class="rainbow-border"></div>
     </a>
-    <a href="#" class="box">
-      <img src="https://via.placeholder.com/150x100" alt="Character 3">
-      <h3>CHARACTER NOT FOUND</h3>
-      <p>NOT FOUND</p>
+    <a href="https://kazakh.vsindo.rf.gd/" class="box">
+      <img src="https://gcdnb.pbrd.co/images/YjqwoJekMYfD.jpg?o=1" alt="KAZAKH">
+      <h3>KAZAKH</h3>
+      <p>[CHARACTER]</p>
+      <p>CHAR BY : @whoisyogi | Kazu The Honored One</p>
       <div class="rainbow-border"></div>
     </a>
     <a href="#" class="box">
@@ -275,19 +305,37 @@
     <p>LEWATI IKLAN TERLEBIH DAHULU</p>
   </div>
 
+  <div class="floating" id="floatingRules">
+    <p>PERATURAN VS BATTLE INDO</p>
+    <ul style="text-align: left; padding-left: 20px;">
+      <li>1. WAJIB MENGIRIM CERITA BUATAN SENDIRI JANGAN GENERATE MENGGUNAKAN AI JIKA TERDETEKSI MENGGUNAKAN AI CHARACTER AKAN DI TOLAK</li>
+      <li>2. DI PERBOLEHKAN MEMBUAT FOTO KARAKTER MENGGUNAKAN AI</li>
+      <li>3. PASTIAKAN CERITA LENGKAP LUMAYAN PANJANG JIKA TIDAK AKAN LANGSUNG DI TOLAK</li>
+      <li>4. BOLEH MEMAKAI CHARACTER DARI VSB ATAU WEB VS BATTLE LAIN NYA DAN JIKA INGIN UP CHAR TERSEBUT KHUSUS CHAR YANG SUDAH ADA DI WEB LAIN SEPERTI VSB ATAU YANG LAIN HARUS ADA BUKTI DI MANA CHAR TERSEBUT BISA DI UP</li>
+      <li>5. KARAKTER DI NILAI DENGAN TELITI, PASTIKAN KAMU MEMATUHI APA PERATURAN DI ATAS</li>
+    </ul>
+    <p>TERIMA KASIH,</p>
+    <div class="floating-buttons">
+      <button class="floating-button" id="rulesAgreeButton">SETUJU</button>
+    </div>
+  </div>
+
   <script>
     const body = document.body;
 
     const uploadButton = document.getElementById('uploadButton');
     const requestButton = document.getElementById('requestButton');
+    const rulesButton = document.getElementById('rulesButton');
     const floating = document.getElementById('floating');
     const floatingYes = document.getElementById('floatingYes');
     const floatingRequest = document.getElementById('floatingRequest');
     const floatingRequestYes = document.getElementById('floatingRequestYes');
+    const floatingRules = document.getElementById('floatingRules');
     const yesButton = document.getElementById('yesButton');
     const noButton = document.getElementById('noButton');
     const requestYesButton = document.getElementById('requestYesButton');
     const requestNoButton = document.getElementById('requestNoButton');
+    const rulesAgreeButton = document.getElementById('rulesAgreeButton');
 
     uploadButton.addEventListener('click', () => {
       floating.style.display = 'block';
@@ -342,6 +390,18 @@
             window.location.href = 'https://sfl.gl/eg3gJL';
           }, 500);
         }, 2500);
+      }, 500);
+    });
+
+    rulesButton.addEventListener('click', () => {
+      floatingRules.style.display = 'block';
+      floatingRules.style.animation = 'fadeIn 0.5s';
+    });
+
+    rulesAgreeButton.addEventListener('click', () => {
+      floatingRules.style.animation = 'fadeOut 0.5s';
+      setTimeout(() => {
+        floatingRules.style.display = 'none';
       }, 500);
     });
   </script>
