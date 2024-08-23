@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VS Battles Indonesia</title>
-  <title>Vs Battle Indo</title>
   <meta name="description" content="Selamat datang di VS Battles Indonesia (VSBI), komunitas untuk diskusi dan perbandingan karakter dari berbagai universe. Temukan dan kontribusikan karakter favoritmu di sini!">
   <meta name="keywords" content="vs battle, vs battles indonesia, vs battle indonesia, vs battle indo, vs battle wiki, perbandingan karakter, komunitas vs battle, karakter anime, karakter manga, karakter game, tier karakter, upload karakter, web novel, cerita karakter, ranking karakter, vs battle indo, vs battles Indonesia">
+  
   <style>
+    /* Global Styles */
     body {
       margin: 0;
       padding: 0;
@@ -19,10 +20,11 @@
       align-items: center;
       justify-content: flex-start;
       position: relative;
-      height: 100vh; /* Ubah tinggi menjadi 100vh */
+      height: 100vh;
       transition: background 0.5s;
     }
 
+    /* Video Background */
     #video-background {
       position: fixed;
       top: 0;
@@ -34,6 +36,7 @@
       transition: background-color 0.5s;
     }
 
+    /* Title Styles */
     .title {
       font-size: 2.5rem;
       font-weight: bold;
@@ -53,6 +56,7 @@
       100% { background-position: 0%; }
     }
 
+    /* Snow Styles */
     .snow {
       position: fixed;
       top: -10%;
@@ -60,7 +64,7 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      z-index: 10; /* Pastikan salju berada di atas video */
+      z-index: 10;
       overflow: hidden;
     }
 
@@ -76,7 +80,7 @@
     .leaf {
       position: absolute;
       top: -10%;
-      font-size: 24px; /* Ukuran emoji daun */
+      font-size: 24px;
       opacity: 0.8;
       animation: leafFall linear infinite;
     }
@@ -89,18 +93,18 @@
 
     @keyframes leafFall {
       to {
-        transform: translateY(100vh) rotate(360deg); /* Memutar daun saat jatuh */
+        transform: translateY(100vh) rotate(360deg);
       }
     }
 
-    /* Style lainnya tetap sama... */
-
+    /* Button Container */
     .button-container {
       display: flex;
       justify-content: center;
       margin-top: 20px;
     }
 
+    /* Search Container */
     .search-container {
       display: flex;
       justify-content: center;
@@ -146,6 +150,7 @@
       height: 20px;
     }
 
+    /* Container Styles */
     .container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -166,8 +171,8 @@
       transition: transform 0.2s;
       text-decoration: none;
       color: inherit;
-      border-radius: 10px; 
-      overflow: hidden; 
+      border-radius: 10px;
+      overflow: hidden;
     }
 
     .box:hover {
@@ -183,7 +188,7 @@
 
     .box h3,
     .box p {
-      color: #000; 
+      color: #000;
       text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
     }
 
@@ -194,9 +199,9 @@
       right: 0;
       bottom: 0;
       border: 5px solid transparent;
-      border-radius: 10px; 
-      animation: changeColors 2s linear infinite; 
-      z-index: -1; 
+      border-radius: 10px;
+      animation: changeColors 2s linear infinite;
+      z-index: -1;
     }
 
     @keyframes changeColors {
@@ -209,17 +214,18 @@
       100% { border-color: violet; }
     }
 
+    /* Button Styles */
     .upload-button {
       display: inline-block;
-      padding: 10px 20px; 
-      margin: 0 5px; /* Margin to separate buttons */
+      padding: 10px 20px;
+      margin: 0 5px;
       background-color: #ff80bf;
       color: #fff;
       font-weight: bold;
       border: none;
-      border-radius: 5px; 
+      border-radius: 5px;
       cursor: pointer;
-      font-size: 1rem; 
+      font-size: 1rem;
       transition: background-color 0.3s, transform 0.3s;
     }
 
@@ -231,7 +237,7 @@
     .rainbow-button {
       display: inline-block;
       padding: 10px 20px;
-      margin: 0 5px; /* Margin to separate buttons */
+      margin: 0 5px;
       background-color: #ff80bf;
       color: #fff;
       font-weight: bold;
@@ -241,7 +247,7 @@
       font-size: 1rem;
       transition: background-color 0.3s, transform 0.3s;
       background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
-      background-size: 400%; /* Increase size of background for smooth animation */
+      background-size: 400%;
       animation: rainbowButton 5s infinite;
     }
 
@@ -256,6 +262,7 @@
       transform: scale(1.05);
     }
 
+    /* Floating Dialog Styles */
     .floating {
       display: none;
       position: fixed;
@@ -305,14 +312,18 @@
   </style>
 </head>
 <body>
+  <!-- Video Background -->
   <video id="video-background" autoplay muted loop>
     <source src="https://www.dropbox.com/scl/fi/0gats9e3nas32g6y1t23e/Pindown.io_1724345734.mp4?rlkey=bdcozach4re0yof133xovvoy1&dl=1" type="video/mp4">
   </video>
 
+  <!-- Snow Container -->
   <div class="snow" id="snowContainer"></div>
 
+  <!-- Title -->
   <div class="title">VS BATTLES INDO</div>
   
+  <!-- Button Container -->
   <div class="button-container">
     <button class="upload-button" id="uploadButton">UPLOAD CHAR</button>
     <button class="upload-button" id="requestButton">UP TIER CHAR</button>
@@ -320,6 +331,7 @@
     <button class="upload-button" id="realisticWebButton">Mode Realistis</button>
   </div>
 
+  <!-- Search Container -->
   <div class="search-container">
     <input type="text" class="search-bar" id="searchBar" placeholder="Cari karakter...">
     <button class="search-icon" id="searchButton">
@@ -327,7 +339,9 @@
     </button>
   </div>
 
+  <!-- Character Container -->
   <div class="container" id="characterContainer">
+    <!-- Character Box -->
     <a href="https://www.voidsai.kesug.com/" class="box">
       <img src="https://gcdnb.pbrd.co/images/N6AjgySX6OqL.png?o=1" alt="Character 1">
       <h3>Void Sai</h3>
@@ -386,6 +400,7 @@
     </a>
   </div>
 
+  <!-- Floating Dialogs -->
   <div class="floating" id="floating">
     <p>UPLOAD CHAR BUATAN MU DI WEB INI KLIK YES JIKA SETUJU</p>
     <p>WARNING!!!</p>
@@ -399,7 +414,7 @@
 
   <div class="floating" id="floatingYes">
     <p>LEWATI IKLAN TERLEBIH DAHULU</p>
-    <p id="countdown"></p>
+    <p id="countdown">3</p>
   </div>
 
   <div class="floating" id="floatingRequest">
@@ -412,7 +427,7 @@
 
   <div class="floating" id="floatingRequestYes">
     <p>LEWATI IKLAN TERLEBIH DAHULU</p>
-    <p id="countdownRequest"></p>
+    <p id="requestCountdown">3</p>
   </div>
 
   <div class="floating" id="floatingRules">
@@ -420,70 +435,206 @@
     <ul style="text-align: left; padding-left: 20px;">
       <li>1. WAJIB MENGIRIM CERITA BUATAN SENDIRI JANGAN GENERATE MENGGUNAKAN AI JIKA TERDETEKSI MENGGUNAKAN AI CHARACTER AKAN DI TOLAK</li>
       <li>2. DI PERBOLEHKAN MEMBUAT FOTO KARAKTER MENGGUNAKAN AI</li>
-      <li>3. PASTIKAN CERITA LENGKAP LUMAYAN PANJANG JIKA TIDAK AKAN LANGSUNG DI TOLAK</li>
-      <li>4. BOLEH MEMAKAI CHARACTER DARI VSB ATAU WEB VS BATTLE LAIN NYA DAN JIKA INGIN UP CHAR TERSEBUT KHUSUS CHAR YANG SUDAH ADA DI WEB LAIN SEPERTI VSB ATAU YANG LAIN HARUS ADA BUKTI DI WEB TERSEBUT</li>
+      <li>3. PASTIAKAN CERITA LENGKAP LUMAYAN PANJANG JIKA TIDAK AKAN LANGSUNG DI TOLAK</li>
+      <li>4. BOLEH MEMAKAI CHARACTER DARI VSB ATAU WEB VS BATTLE LAIN NYA DAN JIKA INGIN UP CHAR TERSEBUT KHUSUS CHAR YANG SUDAH ADA DI WEB LAIN SEPERTI VSB ATAU YANG LAIN HARUS ADA BUKTI DI MANA CHAR TERSEBUT BISA DI UP</li>
+            <li>5. KARAKTER DI NILAI DENGAN TELITI, PASTIKAN KAMU MEMATUHI APA PERATURAN DI ATAS</li>
     </ul>
+    <p>TERIMA KASIH,</p>
+    <div class="floating-buttons">
+      <button class="floating-button" id="rulesAgreeButton">SETUJU</button>
+    </div>
   </div>
 
   <script>
-    document.getElementById('uploadButton').addEventListener('click', function() {
-    document.getElementById('floating').style.display = 'block';
-  });
+    const uploadButton = document.getElementById('uploadButton');
+    const requestButton = document.getElementById('requestButton');
+    const rulesButton = document.getElementById('rulesButton');
+    const realisticWebButton = document.getElementById('realisticWebButton');
+    const floating = document.getElementById('floating');
+    const floatingRequest = document.getElementById('floatingRequest');
+    const floatingYes = document.getElementById('floatingYes');
+    const floatingRequestYes = document.getElementById('floatingRequestYes');
+    const floatingRules = document.getElementById('floatingRules');
+    const snowContainer = document.getElementById('snowContainer');
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const requestYesButton = document.getElementById('requestYesButton');
+    const requestNoButton = document.getElementById('requestNoButton');
+    const rulesAgreeButton = document.getElementById('rulesAgreeButton');
+    const searchBar = document.getElementById('searchBar');
+    const searchButton = document.getElementById('searchButton');
+    const videoBackground = document.getElementById('video-background');
+    const countdownElement = document.getElementById('countdown');
+    const requestCountdownElement = document.getElementById('requestCountdown');
 
-  document.getElementById('requestButton').addEventListener('click', function() {
-    document.getElementById('floatingRequest').style.display = 'block';
-  });
+    let isRealisticModeActive = false;
 
-  document.getElementById('rulesButton').addEventListener('click', function() {
-    document.getElementById('floatingRules').style.display = 'block';
-  });
+    const originalVideoSrc = videoBackground.querySelector('source').src; // Video original
+    const realisticVideoSrc = 'https://www.dropbox.com/scl/fi/ahy8obhtfqu0igxegykko/463a2bff2bdedf43f039c0e43884e696.mp4?rlkey=uif9hl91izgo04rcdxagmzw06&st=6beny70a&dl=1'; // Video realistis
 
-  document.getElementById('yesButton').addEventListener('click', function() {
-    document.getElementById('floating').style.display = 'none';
-    document.getElementById('floatingYes').style.display = 'block';
-    let countdownNumber = 3;
-    document.getElementById('countdown').innerHTML = countdownNumber;
-    let countdownInterval = setInterval(() => {
-      countdownNumber--;
-      document.getElementById('countdown').innerHTML = countdownNumber;
-      if (countdownNumber === 0) {
-        clearInterval(countdownInterval);
-        window.location.href = 'https://sfl.gl/z2zUqFP';
+    // Cek status mode realistis saat halaman dimuat
+    const checkRealisticMode = () => {
+      const isRealisticActive = localStorage.getItem('realisticMode') === 'true';
+      if (isRealisticActive) {
+        activateRealisticMode();
       }
-    }, 1000);
-  });
+    };
 
-  document.getElementById('requestYesButton').addEventListener('click', function() {
-    document.getElementById('floatingRequest').style.display = 'none';
-    document.getElementById('floatingRequestYes').style.display = 'block';
-    let countdownRequestNumber = 3;
-    document.getElementById('countdownRequest').innerHTML = countdownRequestNumber;
-    let countdownRequestInterval = setInterval(() => {
-      countdownRequestNumber--;
-      document.getElementById('countdownRequest').innerHTML = countdownRequestNumber;
-      if (countdownRequestNumber === 0) {
-        clearInterval(countdownRequestInterval);
-        window.location.href = 'https://sfl.gl/eg3gJL';
+    uploadButton.addEventListener('click', () => {
+      floating.style.display = 'block';
+      floating.style.animation = 'fadeIn 0.5s';
+    });
+
+    noButton.addEventListener('click', () => {
+      floating.style.animation = 'fadeOut 0.5s';
+      setTimeout(() => {
+        floating.style.display = 'none';
+      }, 500);
+    });
+
+    yesButton.addEventListener('click', () => {
+      floating.style.animation = 'fadeOut 0.5s';
+      setTimeout(() => {
+        floating.style.display = 'none';
+        floatingYes.style.display = 'block';
+        startCountdown('upload');
+      }, 500);
+    });
+
+    requestButton.addEventListener('click', () => {
+      floatingRequest.style.display = 'block';
+      floatingRequest.style.animation = 'fadeIn 0.5s';
+    });
+
+    requestNoButton.addEventListener('click', () => {
+      floatingRequest.style.animation = 'fadeOut 0.5s';
+      setTimeout(() => {
+        floatingRequest.style.display = 'none';
+      }, 500);
+    });
+
+    requestYesButton.addEventListener('click', () => {
+      floatingRequest.style.animation = 'fadeOut 0.5s';
+      setTimeout(() => {
+        floatingRequest.style.display = 'none';
+        floatingRequestYes.style.display = 'block';
+        startCountdown('request');
+      }, 500);
+    });
+
+    rulesButton.addEventListener('click', () => {
+      floatingRules.style.display = 'block';
+      floatingRules.style.animation = 'fadeIn 0.5s';
+    });
+
+    rulesAgreeButton.addEventListener('click', () => {
+      floatingRules.style.animation = 'fadeOut 0.5s';
+      setTimeout(() => {
+        floatingRules.style.display = 'none';
+      }, 500);
+    });
+
+    searchButton.addEventListener('click', () => {
+      const searchTerm = searchBar.value.toLowerCase();
+      const boxes = document.querySelectorAll('.box');
+
+      // Sembunyikan semua karakter terlebih dahulu
+      boxes.forEach(box => {
+        box.style.display = 'none';
+      });
+
+      // Tampilkan karakter yang sesuai setelah tombol pencarian diklik
+      boxes.forEach(box => {
+        const characterName = box.querySelector('h3').textContent.toLowerCase();
+        if (characterName.includes(searchTerm)) {
+          box.style.display = 'block';
+        }
+      });
+    });
+
+    // Fungsionalitas Mode Realistis
+    realisticWebButton.addEventListener('click', () => {
+      if (isRealisticModeActive) {
+        stopRealisticMode();
+      } else {
+        activateRealisticMode();
       }
-    }, 1000);
-  });
+    });
 
-  document.getElementById('noButton').addEventListener('click', function() {
-    document.getElementById('floating').style.display = 'none';
-  });
+    const activateRealisticMode = () => {
+      videoBackground.querySelector('source').src = realisticVideoSrc; // Ganti video latar belakang
+      videoBackground.load(); // Memuat video baru
+      videoBackground.play(); // Memutar video
+      isRealisticModeActive = true;
+      realisticWebButton.textContent = 'Hentikan Mode';
+      localStorage.setItem('realisticMode', 'true'); // Simpan status di localStorage
 
-  document.getElementById('requestNoButton').addEventListener('click', function() {
-    document.getElementById('floatingRequest').style.display = 'none';
-  });
+      // Tambahkan efek salju dan daun
+      createSnowflakes();
+      createLeaves();
+    };
 
-  document.getElementById('realisticWebButton').addEventListener('click', function() {
-    window.location.href = 'https://www.realisticmodewebsite.com';
-  });
+    const stopRealisticMode = () => {
+      videoBackground.querySelector('source').src = originalVideoSrc; // Kembalikan video latar belakang ke video asli
+      videoBackground.load(); // Memuat video original
+      videoBackground.play(); // Memutar video original
+      isRealisticModeActive = false;
+      realisticWebButton.textContent = 'Mode Realistis';
+      localStorage.setItem('realisticMode', 'false'); // Simpan status di localStorage
 
-  document.getElementById('searchButton').addEventListener('click', function() {
-    let query = document.getElementById('searchBar').value;
-    window.location.href = `https://www.searchwebsite.com/search?q=${query}`;
-  });
-</script>
+      // Hapus efek salju dan daun
+      snowContainer.innerHTML = '';
+    };
+
+    const createSnowflakes = () => {
+      for (let i = 0; i < 100; i++) { // Tambahkan 100 butir salju
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.style.width = `${Math.random() * 10 + 5}px`; // Ukuran acak
+        snowflake.style.height = snowflake.style.width; // Bentuk bulat
+        snowflake.style.left = `${Math.random() * 100}vw`; // Posisi acak di lebar jendela
+        snowflake.style.animationDuration = `${Math.random() * 6 + 4}s`; // Durasi acak untuk jatuh (lebih lambat)
+        snowflake.style.opacity = Math.random(); // Opasitas acak
+        snowContainer.appendChild(snowflake);
+      }
+    };
+
+    const createLeaves = () => {
+      for (let i = 0; i < 150; i++) { // Tambahkan 150 daun
+        const leaf = document.createElement('div');
+        leaf.classList.add('leaf');
+        leaf.textContent = '🍃'; // Emoji daun
+        leaf.style.left = `${Math.random() * 100}vw`; // Posisi acak di lebar jendela
+        leaf.style.animationDuration = `${Math.random() * 6 + 4}s`; // Durasi acak untuk jatuh (lebih lambat)
+        leaf.style.opacity = Math.random(); // Opasitas acak
+        snowContainer.appendChild(leaf);
+      }
+    };
+
+    const startCountdown = (type) => {
+      let countdown = 3;
+      const countdownInterval = setInterval(() => {
+        if (countdown === 0) {
+          clearInterval(countdownInterval);
+          if (type === 'upload') {
+            window.location.href = 'https://sfl.gl/z2zUqFP'; // Ganti dengan URL upload yang sesuai
+          } else if (type === 'request') {
+            window.location.href = 'https://sfl.gl/eg3gJL'; // Ganti dengan URL request yang sesuai
+          }
+        } else {
+          if (type === 'upload') {
+            countdownElement.textContent = countdown;
+          } else if (type === 'request') {
+            requestCountdownElement.textContent = countdown;
+          }
+          countdown--;
+        }
+      }, 1000);
+    };
+
+    // Cek status mode realistis saat halaman dimuat
+    checkRealisticMode();
+
+  </script>
 </body>
 </html>
