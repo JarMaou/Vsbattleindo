@@ -413,11 +413,11 @@
       <p>CHAR BY : @walaaahhhhh_</p>
       <div class="rainbow-border"></div>
     </a>
-    <a href="https://example.com/character11" class="box">
-      <img src="https://via.placeholder.com/150" alt="Character 11">
-      <h3>Character 11</h3>
+    <a href="https://tdk.vsindo.rf.gd" class="box">
+      <img src="https://i.postimg.cc/RFPPQLBg/f6671236ada5ae37359599f612705a51.jpg" alt="Character 11">
+      <h3>The Darkness Knight</h3>
       <p>[CHARACTER]</p>
-      <p>CHAR BY : @creator11</p>
+      <p>CHAR BY : ADMIN</p>
       <div class="rainbow-border"></div>
     </a>
     <a href="https://example.com/character12" class="box">
@@ -582,10 +582,17 @@
       // Tampilkan karakter yang sesuai setelah tombol pencarian diklik
       boxes.forEach(box => {
         const characterName = box.querySelector('h3').textContent.toLowerCase();
-        if (characterName.includes(searchTerm)) {
+        const characterDescription = box.querySelector('p').textContent.toLowerCase();
+        if (characterName.includes(searchTerm) || characterDescription.includes(searchTerm)) {
           box.style.display = 'block';
         }
       });
+
+      // Tampilkan "The Darkness Knight" jika pencarian adalah "ksatria paling hitam" atau "The Darkness Knight"
+      if (searchTerm === 'ksatria paling hytam' || searchTerm === 'the darkness knight') {
+        const theDarknessKnightBox = document.querySelector('a[href="https://tdk.vsindo.rf.gd"]');
+        if (theDarknessKnightBox) theDarknessKnightBox.style.display = 'block';
+      }
     });
 
     // Fungsionalitas Mode Realistis
