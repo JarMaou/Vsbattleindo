@@ -309,6 +309,97 @@
       from { opacity: 1; }
       to { opacity: 0; }
     }
+
+    /* Sidebar Toggle Button */
+    .sidebar-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      cursor: pointer;
+      background-color: #ff80bf;
+      padding: 5px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .sidebar-toggle:hover {
+      background-color: #ff0080;
+      transform: scale(1.05);
+    }
+
+    .sidebar-toggle img {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px; /* Mulai dari posisi tersembunyi */
+      width: 250px;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      padding: 20px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+      transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Tambahkan transisi untuk opacity */
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      opacity: 0; /* Mulai dengan opacity 0 */
+      pointer-events: none; /* Nonaktifkan interaksi saat tidak terlihat */
+    }
+
+    .sidebar.active {
+      left: 0; /* Muncul di layar */
+      opacity: 1; /* Ubah opacity ke 1 saat aktif */
+      pointer-events: auto; /* Aktifkan interaksi saat terlihat */
+    }
+
+    .sidebar-close {
+      align-self: flex-end;
+      cursor: pointer;
+      background-color: #ff80bf;
+      padding: 5px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      transition: background-color 0.3s, transform 0.3s;
+      margin-bottom: 10px; /* Tambahkan margin bawah agar tidak terlalu dekat */
+    }
+
+    .sidebar-close img {
+      width: 15px; /* Perkecil ukuran gambar */
+      height: 15px; /* Perkecil ukuran gambar */
+    }
+
+    .sidebar-close:hover {
+      background-color: #ff0080;
+      transform: scale(1.05);
+    }
+
+    .sidebar-button {
+      padding: 10px 20px;
+      margin: 10px 0;
+      background-color: #ff80bf;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.3s;
+      width: 100%; /* Agar tombol memenuhi lebar sidebar */
+      text-align: left; /* Agar teks rata kiri */
+    }
+
+    .sidebar-button:hover {
+      background-color: #ff0080;
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
@@ -323,6 +414,20 @@
   <!-- Title -->
   <div class="title">VS BATTLES INDO</div>
   
+  <!-- Sidebar Toggle Button -->
+  <div id="sidebarToggle" class="sidebar-toggle">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/menu.png" alt="Menu">
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <!-- Sidebar Close Button -->
+    <div id="sidebarClose" class="sidebar-close">
+      <img src="https://img.icons8.com/ios-filled/50/ffffff/menu.png" alt="Close Menu">
+    </div>
+    <button class="sidebar-button" id="tierListButton">Tier List</button>
+  </div>
+
   <!-- Button Container -->
   <div class="button-container">
     <button class="upload-button" id="uploadButton">UPLOAD CHAR</button>
@@ -393,12 +498,11 @@
     </a>
     <a href="https://whitestar.vsindo.rf.gd/" class="box">
       <img src="https://gcdnb.pbrd.co/images/N1yCM1Ukks5G.png?o=1" alt="Character 8">
-      <h3>White Star </h3>
+      <h3>White Star</h3>
       <p>[CHARACTER]</p>
       <p>CHAR BY : @alter_darkness1</p>
       <div class="rainbow-border"></div>
     </a>
-    <!-- Additional 5 Character Boxes -->
     <a href="https://llawliet.vsindo.rf.gd/" class="box">
       <img src="https://gcdnb.pbrd.co/images/dc52WxN0gWjI.jpg?o=1" alt="Character 9">
       <h3>L Lawliet</h3>
@@ -486,6 +590,10 @@
     const requestButton = document.getElementById('requestButton');
     const rulesButton = document.getElementById('rulesButton');
     const realisticWebButton = document.getElementById('realisticWebButton');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarClose = document.getElementById('sidebarClose');
+    const tierListButton = document.getElementById('tierListButton');
     const floating = document.getElementById('floating');
     const floatingRequest = document.getElementById('floatingRequest');
     const floatingYes = document.getElementById('floatingYes');
@@ -589,7 +697,7 @@
       });
 
       // Tampilkan "The Darkness Knight" jika pencarian adalah "ksatria paling hitam" atau "The Darkness Knight"
-      if (searchTerm === 'ksatria paling hytam' || searchTerm === 'the darkness knight') {
+      if (searchTerm === 'ksatria paling hitam' || searchTerm === 'the darkness knight') {
         const theDarknessKnightBox = document.querySelector('a[href="https://tdk.vsindo.rf.gd"]');
         if (theDarknessKnightBox) theDarknessKnightBox.style.display = 'block';
       }
@@ -646,7 +754,7 @@
       for (let i = 0; i < 150; i++) { // Tambahkan 150 daun
         const leaf = document.createElement('div');
         leaf.classList.add('leaf');
-        leaf.textContent = '🍃'; // Emoji daun
+        leaf.textContent = 'š¨'; // Emoji daun
         leaf.style.left = `${Math.random() * 100}vw`; // Posisi acak di lebar jendela
         leaf.style.animationDuration = `${Math.random() * 6 + 4}s`; // Durasi acak untuk jatuh (lebih lambat)
         leaf.style.opacity = Math.random(); // Opasitas acak
@@ -674,6 +782,21 @@
         }
       }, 1000);
     };
+
+    // Event Listener untuk Sidebar Toggle
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+
+    // Event Listener untuk Sidebar Close Button
+    sidebarClose.addEventListener('click', () => {
+      sidebar.classList.remove('active');
+    });
+
+    // Event Listener untuk Tier List Button
+    tierListButton.addEventListener('click', () => {
+      window.location.href = 'https://vsbitier.vsindo.rf.gd/'; // Ganti dengan URL yang sesuai
+    });
 
     // Cek status mode realistis saat halaman dimuat
     checkRealisticMode();
